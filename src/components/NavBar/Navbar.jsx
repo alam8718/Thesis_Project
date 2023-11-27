@@ -1,7 +1,11 @@
 import React from "react";
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 
 function Navbar() {
+  const navigate = useNavigate();
+  const handleNavigate = ()=>{
+    navigate("/login")
+  }
   return (
     <div>
       <nav className="w-full h-16 shadow-lg text-white">
@@ -50,7 +54,13 @@ function Navbar() {
               Consumer
             </NavLink>
           </li>
+          <li className="ml-10">
+          <button className="bg-blue-500 px-10 py-2 rounded-lg font-semibold" onClick={handleNavigate}>
+            Login/SignUp
+          </button>
+        </li>
         </ul>
+        
       </nav>
     </div>
   );
