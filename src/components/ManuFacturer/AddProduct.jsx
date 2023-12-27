@@ -1,64 +1,108 @@
-import React from "react";
+import React, {useState} from "react";
+import GenerateCode from "./GenerateCode";
 
 function AddProduct() {
-  return (
-    <div className="max-w-4xl mx-auto  h-auto my-20 bg-slate-200 ">
-      <div className="text-center pt-10 my-10 shadow-lg">
-        <h1 className="text-3xl pb-4 uppercase">Add Product</h1>
-      </div>
-      <div className="flex flex-col gap-4 sm:gap-0 sm:flex-row sm:justify-evenly text-lg">
-        <div className="flex flex-col gap-4 items-end  ">
-          <div>
-            <label htmlFor=" ">Manfacturer Id : </label>
-            <input
-              type="text"
-              name=" "
-              className="p-2 border border-slate-500 bg-slate-100 rounded-lg"
-            />
-          </div>
-          <div>
-            <label htmlFor="">Product SN : </label>
-            <input
-              type="text"
-              name=" "
-              className="p-2 border border-slate-500 bg-slate-100 rounded-lg"
-            />
-          </div>
-          <div>
-            <label htmlFor=" ">Product Price : </label>
-            <input
-              type="text"
-              name=" "
-              className="p-2 border border-slate-500 bg-slate-100 rounded-lg"
-            />
-          </div>
-        </div>
+  const [formValue, setFormValue] = useState({
+    ManfacturerId: "",
+    ProductSerial: "",
+    ProductName: "",
+    ProductBrand: "",
+    ProductPrice: "",
+  });
 
-        <div className="flex flex-col gap-4 ">
-          <div>
-            <label htmlFor="">Product Name : </label>
-            <input
-              type="text"
-              name=""
-              className="p-2 border border-slate-500 bg-slate-100 rounded-lg"
-            />
-          </div>
-          <div>
-            <label htmlFor="">Product Brand : </label>
-            <input
-              type="text"
-              name=""
-              className="p-2 border border-slate-500 bg-slate-100 rounded-lg"
-            />
-          </div>
+  const [combineText, setCombineText] = useState("");
+
+  const handleChange = (e) => {
+    const {name, value} = e.target;
+    setFormValue((prevFormValue) => ({
+      ...prevFormValue,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setCombineText(
+      ` Manufacturer ID: ${formValue.ManfacturerId},\n Product Serial: ${formValue.ProductSerial}, \n Product Name: ${formValue.ProductName},\n Product Brand: ${formValue.ProductBrand},\n Product Price: ${formValue.ProductPrice}`
+    );
+  };
+  console.log(combineText);
+
+  return (
+    <>
+      <div className="max-w-4xl mx-auto  h-auto my-20 bg-slate-200 ">
+        <div className="text-center pt-10 my-10 shadow-lg">
+          <h1 className="text-3xl pb-4 uppercase">Add Product</h1>
+        </div>
+        <div className="flex">
+          <form onSubmit={handleSubmit}>
+            <div className=" flex flex-wrap gap-10  justify-between mx-20 items-end ">
+              <div className="">
+                <label htmlFor="Manufacturer Id: ">Manfacturer Id : </label>
+                <input
+                  type="text"
+                  name="ManfacturerId"
+                  value={formValue.ManfacturerId}
+                  onChange={handleChange}
+                  className="p-2 border text-black border-slate-500 bg-slate-100 rounded-lg"
+                />
+              </div>
+              <div>
+                <label htmlFor="Product Serial: ">Product Serial : </label>
+                <input
+                  type="text"
+                  name="ProductSerial"
+                  value={formValue.ProductSerial}
+                  onChange={handleChange}
+                  className="p-2 border border-slate-500 bg-slate-100 rounded-lg"
+                />
+              </div>
+              <div>
+                <label htmlFor="Product Name:  ">Product Name : </label>
+                <input
+                  type="text"
+                  name="ProductName"
+                  value={formValue.ProductName}
+                  onChange={handleChange}
+                  className="p-2 border border-slate-500 bg-slate-100 rounded-lg"
+                />
+              </div>
+              <div>
+                <label htmlFor="Product Brand: ">Product Brand : </label>
+                <input
+                  type="text"
+                  name="ProductBrand"
+                  value={formValue.ProductBrand}
+                  onChange={handleChange}
+                  className="p-2 border border-slate-500 bg-slate-100 rounded-lg"
+                />
+              </div>
+              <div>
+                <label htmlFor="Product Price: ">Product Price : </label>
+                <input
+                  type="text"
+                  name="ProductPrice"
+                  value={formValue.ProductPrice}
+                  onChange={handleChange}
+                  className="p-2 border border-slate-500 bg-slate-100 rounded-lg"
+                />
+              </div>
+            </div>
+            {/* button  */}
+            <div className="my-20 flex justify-center">
+              <button
+                type="submit"
+                className="px-4 py-2 bg-amber-400 rounded-lg">
+                Add The Product
+              </button>
+            </div>
+          </form>
         </div>
       </div>
-      <div className="flex justify-center mt-20">
-        <button className="mb-16 px-4 py-2 bg-amber-400 rounded-lg font-semibold hover:bg-amber-500 duration-300">
-          Add The Product
-        </button>
+      <div>
+        <GenerateCode combineText={combineText} />
       </div>
-    </div>
+    </>
   );
 }
 

@@ -58,6 +58,7 @@ function Manufacturer() {
       {showAddProduct && <AddProduct />}
       {showAddSeller && <AddSeller />}
       {sellToSeller && <SellToSeller />}
+     
     </>
   );
 }
