@@ -30,16 +30,16 @@ function Manufacturer() {
               className=" px-4 py-2 bg-amber-400 font-semibold  rounded-lg hover:bg-amber-500 duration-300 ">
               Sell Product To Consumer
             </button>
-            <button
+            {/* <button
               onClick={handleProductSale}
               className="px-4 py-2 bg-amber-400 font-semibold  rounded-lg hover:bg-amber-500 duration-300">
               Product For Sale
-            </button>
+            </button> */}
           </ul>
         </div>
       </div>
       {sellProduct && <SellToConsumer />}
-      {productForSale && <ProductForSell />}
+      {/* {productForSale && <ProductForSell />} */}
     </>
   );
 }
